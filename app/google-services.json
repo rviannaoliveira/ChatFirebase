@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "521339196232",
+    "firebase_url": "https://first-1002b.firebaseio.com",
+    "project_id": "first-1002b",
+    "storage_bucket": "first-1002b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521339196232:android:81a8ee94dc2a893d",
+        "android_client_info": {
+          "package_name": "com.rviannaoliveira.vchatfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521339196232-u42hpf4s29vflajka66bcq969r33jqbl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rviannaoliveira.vchatfirebase",
+            "certificate_hash": "1866b8799b1cd3a8df315f026a1e4c25d9da3f86"
+          }
+        },
+        {
+          "client_id": "521339196232-ab4n2kdjnel6usmuthrr1ge5g39io3u1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqMAXwl8yi7tmA3CvZsBQEvW5TU_g35QQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521339196232-ab4n2kdjnel6usmuthrr1ge5g39io3u1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

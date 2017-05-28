@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">VChatFirebase</string>
+    <string name="send">SEND</string>
+</resources>
