@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("chats")
-                .child("9V012RccjDd962mCb2iD09bOS4w1")//9V012RccjDd962mCb2iD09bOS4w1 // MT6Pk4mUvcgaPnyZHR39OY3YaFj2
+                .child("9V012RccjDd962mCb2iD09bOS4w1")//9V012RccjDd962mCb2iD09bOS4w1(O) // MT6Pk4mUvcgaPnyZHR39OY3YaFj2(U)
                 .addListenerForSingleValueEvent(this);
 
 

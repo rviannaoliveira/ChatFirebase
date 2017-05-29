@@ -37,7 +37,7 @@ public class ChatActivity extends AppCompatActivity implements ValueEventListene
         setContentView(R.layout.activity_chat);
 
         final ChatRoom chatRoom = getIntent().getParcelableExtra("room");
-        messageAdapter = new MessageAdapter(chatRoom.getOperador());
+        messageAdapter = new MessageAdapter(chatRoom.getOperador());//operator
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.messageRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

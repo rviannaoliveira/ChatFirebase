@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder>{
 
-    private List<ChatMessage> list = new ArrayList<>();
+    private List<ChatMessage> list = new LinkedList<>();
     private String user;
 
     MessageAdapter(String user){
@@ -45,8 +45,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public void onBindViewHolder(MessageViewHolder holder, int position) {
         if(user.equals(list.get(position).getType())){
             holder.messageUser.setText(list.get(position).getMessage());
+            holder.messageUser.setVisibility(View.VISIBLE);
         }else{
             holder.messageText.setText(list.get(position).getMessage());
+            holder.messageText .setVisibility(View.VISIBLE);
         }
     }
 
@@ -55,13 +57,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return list.size();
     }
 
-    void clear() {
-        list.clear();
-    }
-
     class MessageViewHolder extends RecyclerView.ViewHolder{
         private TextView messageUser,messageText;
-        private LinearLayout block;
 
         MessageViewHolder(View itemView) {
             super(itemView);
