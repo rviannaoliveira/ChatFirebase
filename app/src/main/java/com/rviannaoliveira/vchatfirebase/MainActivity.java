@@ -1,12 +1,18 @@
 package com.rviannaoliveira.vchatfirebase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,11 +27,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ValueEventListener {
     private ChatRoomAdapter chatRoomAdapter;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        if (firebaseUser == null) {
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        } else {
+            TextView name = (TextView) findViewById(R.id.name_user);
+            name.setText(firebaseUser.getEmail());
+        }
+
 
         chatRoomAdapter = new ChatRoomAdapter();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.roomRecyclerView);
@@ -36,12 +56,30 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         FirebaseDatabase.getInstance()
                 .getReference()
                 .child("chats")
-                .child("9V012RccjDd962mCb2iD09bOS4w1")//9V012RccjDd962mCb2iD09bOS4w1(O) // MT6Pk4mUvcgaPnyZHR39OY3YaFj2(U)
+                .child(firebaseUser.getUid())//9V012RccjDd962mCb2iD09bOS4w1(O) // MT6Pk4mUvcgaPnyZHR39OY3YaFj2(U)
                 .addListenerForSingleValueEvent(this);
 
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.exit:
+                firebaseAuth.signOut();
+                startActivity(new Intent(this, SignInActivity.class));
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         List<ChatRoom> list = new ArrayList<>();

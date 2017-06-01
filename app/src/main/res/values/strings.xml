@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">VChatFirebase</string>
     <string name="send">SEND</string>
+    <string name="email">Email</string>
+    <string name="signUp">SignUp</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="user">User:</string>
+    <string name="exit">exit</string>
+    <string name="signIN">SignIn</string>
 </resources>

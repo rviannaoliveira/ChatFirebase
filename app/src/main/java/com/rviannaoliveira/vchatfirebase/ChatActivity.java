@@ -36,6 +36,7 @@ public class ChatActivity extends AppCompatActivity implements ValueEventListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
         final ChatRoom chatRoom = getIntent().getParcelableExtra("room");
         messageAdapter = new MessageAdapter(chatRoom.getOperador());//operator
 
