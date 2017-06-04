@@ -1,32 +1,51 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/message_user"
+    <LinearLayout
+        android:id="@+id/block_in"
+        android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold"
+        android:background="@drawable/balloon_in"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        tools:text="Example"
+        android:padding="8dp"
+        android:gravity="center_vertical|center_horizontal"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible">
+        <TextView
+            android:id="@+id/message_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal|bold"
+            tools:text="Example"/>
+    </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/message_text"
+    <LinearLayout
+        android:id="@+id/block_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/message_user"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="8dp"
-        android:textColor="@android:color/holo_blue_dark"
-        tools:text="Response"
+        android:layout_below="@+id/block_in"
+        android:background="@drawable/balloon_out"
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical|center_horizontal"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            tools:text="Example"/>
+    </LinearLayout>
+
+
 </RelativeLayout>

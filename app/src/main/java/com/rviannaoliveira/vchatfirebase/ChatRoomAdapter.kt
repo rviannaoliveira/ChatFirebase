@@ -18,8 +18,8 @@ class ChatRoomAdapter : RecyclerView.Adapter<ChatRoomAdapter.RoomViewHolder>() {
     private val list = ArrayList<ChatRoom>()
     private lateinit var context: Context
 
-    fun setChatRoomAdapter(list: List<ChatRoom>) {
-        this.list.addAll(list)
+    fun setChatRoomAdapter(chatRoom : ChatRoom) {
+        this.list.add(chatRoom)
         notifyDataSetChanged()
     }
 
@@ -35,7 +35,7 @@ class ChatRoomAdapter : RecyclerView.Adapter<ChatRoomAdapter.RoomViewHolder>() {
 
         holder.block.setOnClickListener { v ->
             val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra("room", v.tag as ChatRoom)
+            intent.putExtra(Key.ROOM, v.tag as ChatRoom)
             context.startActivity(intent)
         }
     }

@@ -25,5 +25,12 @@ class ChatMessage {
         return key?.hashCode() ?: 0
     }
 
+    enum class Column(val value: String) {
+        CREATE_AT("CreateAt"),
+        MESSAGE("Message"),
+        TYPE("Message")
+
+    }
+
 
 }

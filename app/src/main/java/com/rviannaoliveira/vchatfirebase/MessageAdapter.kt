@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-
-import java.util.LinkedList
+import java.util.*
 
 /**
  * Criado por rodrigo on 28/05/17.
@@ -16,11 +15,6 @@ import java.util.LinkedList
 class MessageAdapter internal constructor(private val user: String) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     private val list = LinkedList<ChatMessage>()
-
-    fun setMessageAdapter(list: List<ChatMessage>) {
-        this.list.addAll(list)
-        notifyDataSetChanged()
-    }
 
     fun setMessageAdapter(chatMessage: ChatMessage) {
         if (list.contains(chatMessage)) {
@@ -37,10 +31,10 @@ class MessageAdapter internal constructor(private val user: String) : RecyclerVi
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         if (user == list[position].type) {
             holder.messageUser.text = list[position].message
-            holder.messageUser.visibility = View.VISIBLE
+            holder.blockIn.visibility = View.VISIBLE
         } else {
             holder.messageText.text = list[position].message
-            holder.messageText.visibility = View.VISIBLE
+            holder.blockOut.visibility = View.VISIBLE
         }
     }
 
@@ -51,6 +45,8 @@ class MessageAdapter internal constructor(private val user: String) : RecyclerVi
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageUser: TextView = itemView.findViewById(R.id.message_user) as TextView
         val messageText: TextView = itemView.findViewById(R.id.message_text) as TextView
+        val blockOut: LinearLayout = itemView.findViewById(R.id.block_out) as LinearLayout
+        val blockIn: LinearLayout = itemView.findViewById(R.id.block_in) as LinearLayout
 
     }
 }

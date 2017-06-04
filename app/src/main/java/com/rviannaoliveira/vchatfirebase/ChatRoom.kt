@@ -60,4 +60,15 @@ open class ChatRoom : Parcelable {
             }
         }
     }
+
+    enum class Column(val value : String){
+        COD_IMOVEL("CodImovel"),
+        CREATE_AT("CreateAt"),
+        LAST_MESSAGE("LastMessage"),
+        OPERATOR("Operator"),
+        ROOM_ID("RoomId"),
+        SUB_TITLE("SubTitle"),
+        TITLE("Title"),
+        User("User");
+    }
 }
