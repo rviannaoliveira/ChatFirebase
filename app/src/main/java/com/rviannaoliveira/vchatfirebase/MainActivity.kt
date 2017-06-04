@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), ChildEventListener {
 
         databaseReference = FirebaseDatabase.getInstance().reference
         databaseReference.child(Key.CHAT)
-                .child(firebaseUser?.uid)//9V012RccjDd962mCb2iD09bOS4w1(O) // MT6Pk4mUvcgaPnyZHR39OY3YaFj2(U)
+                .child(firebaseUser?.uid)
                 .addChildEventListener(this)
 
 
@@ -78,18 +78,17 @@ class MainActivity : AppCompatActivity(), ChildEventListener {
 
     private fun createChat() {
         firebaseUser?.uid?.let {
-            val chatRoom = createChatData(it)
-            showChatActivity(chatRoom)
+            createChatData(it)
         }
     }
 
-    private fun createChatData(it: String): ChatRoom {
+    private fun createChatData(it: String) {
         val uuid = UUID.randomUUID()
         val values = HashMap<String, Any>()
         val chatRoom = ChatRoom()
         chatRoom.codImovel = "2345"
         chatRoom.createAt = Date().time.toString().substring(0, 11)
-        chatRoom.operador = "9V012RccjDd962mCb2iD09bOS4w1"
+        chatRoom.operador = "OjnRkf1uViN2temLPYKnRiFxzb33"
         chatRoom.roomId = uuid.toString()
         chatRoom.subtitle = "Avenida Ana Costa, 255"
         chatRoom.title = "Imobiliaria18"
@@ -103,35 +102,31 @@ class MainActivity : AppCompatActivity(), ChildEventListener {
         values.put(ChatRoom.Column.SUB_TITLE.value, chatRoom.subtitle.toString())
         values.put(ChatRoom.Column.TITLE.value, chatRoom.title.toString())
         values.put(ChatRoom.Column.User.value, it)
-        databaseReference.child(Key.CHAT).child(it).child(uuid.toString()).setValue(values)
-        databaseReference.child(Key.CHAT).child(chatRoom.operador.toString()).child(uuid.toString()).setValue(values)
-        return chatRoom
+        databaseReference.child(Key.CHAT).child(it).child(chatRoom.roomId ).setValue(values)
+        databaseReference.child(Key.CHAT).child(chatRoom.operador.toString()).child(chatRoom.roomId).setValue(values)
     }
 
-    private fun showChatActivity(chatRoom: ChatRoom) {
-        val intent = Intent(this, ChatActivity::class.java)
-        intent.putExtra(Key.ROOM, chatRoom)
-        startActivity(Intent(this, ChatActivity::class.java))
-    }
 
-    override fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+    override fun onChildAdded(dataSnapshot: DataSnapshot, r: String?) {
         val chatRoom = ChatRoom()
         chatRoom.key = dataSnapshot.key
         chatRoom.codImovel = dataSnapshot.child(ChatRoom.Column.COD_IMOVEL.value).value.toString()
         chatRoom.title = dataSnapshot.child(ChatRoom.Column.TITLE.value).value.toString()
+        chatRoom.subtitle = dataSnapshot.child(ChatRoom.Column.SUB_TITLE.value).value.toString()
         chatRoom.lastMessage = dataSnapshot.child(ChatRoom.Column.LAST_MESSAGE.value).value.toString()
         chatRoom.user = dataSnapshot.child(ChatRoom.Column.User.value).value.toString()
         chatRoom.operador = dataSnapshot.child(ChatRoom.Column.OPERATOR.value).value.toString()
         chatRoom.roomId = dataSnapshot.child(ChatRoom.Column.ROOM_ID.value).value.toString()
+        chatRoom.createAt = dataSnapshot.child(ChatRoom.Column.CREATE_AT.value).value.toString()
 
         chatRoomAdapter.setChatRoomAdapter(chatRoom)
     }
 
-    override fun onChildChanged(dataSnapshot: DataSnapshot, s: String) {}
+    override fun onChildChanged(dataSnapshot: DataSnapshot, a: String?) {}
 
     override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
 
-    override fun onChildMoved(dataSnapshot: DataSnapshot, s: String) {}
+    override fun onChildMoved(dataSnapshot: DataSnapshot, b: String?) {}
 
     override fun onCancelled(databaseError: DatabaseError) {}
 }

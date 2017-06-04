@@ -28,7 +28,7 @@ class ChatActivity : AppCompatActivity(), ChildEventListener {
         firebaseUser = FirebaseAuth.getInstance().currentUser
 
         val chatRoom = intent.getParcelableExtra<ChatRoom>(Key.ROOM)
-        messageAdapter = MessageAdapter(chatRoom.operador.toString())//operator
+        messageAdapter = MessageAdapter(firebaseUser?.uid)
 
         val recyclerView = findViewById(R.id.messageRecyclerView) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -46,21 +46,25 @@ class ChatActivity : AppCompatActivity(), ChildEventListener {
     }
 
     private fun sendMessage(chatRoom: ChatRoom) {
-        val values = HashMap<String, Any>()
-        val valuesRoom = HashMap<String, Any>()
-        val time = Date().time.toString().substring(0, 11)
+        firebaseUser?.uid?.let {
+            val values = HashMap<String, Any>()
+            val valuesRoom = HashMap<String, Any>()
+            val time = Date().time.toString().substring(0, 11)
 
-        values.put(ChatMessage.Column.CREATE_AT.value, time)
-        values.put(ChatMessage.Column.MESSAGE.value, messageEditText.text.toString())
-        values.put(ChatMessage.Column.TYPE.value, chatRoom.operador.toString())//operator
+            values.put(ChatMessage.Column.CREATE_AT.value, time)
+            values.put(ChatMessage.Column.MESSAGE.value, messageEditText.text.toString())
+            values.put(ChatMessage.Column.TYPE.value, it)
+            valuesRoom.put(ChatRoom.Column.LAST_MESSAGE.value, messageEditText.text.toString())
+            databaseReference.child(Key.MESSAGES).child(chatRoom.roomId).child(time).setValue(values)
 
-        valuesRoom.put(ChatMessage.Column.MESSAGE.value, messageEditText.text.toString())
-        databaseReference.child(Key.MESSAGES).child(chatRoom.roomId).child(time).setValue(values)
-        databaseReference.child(Key.CHAT).child(firebaseUser?.uid).child(chatRoom.roomId).setValue(valuesRoom)
-        messageEditText.setText("")
+            databaseReference.child(Key.CHAT).child(chatRoom.user).child(chatRoom.roomId).updateChildren(valuesRoom)
+            databaseReference.child(Key.CHAT).child(chatRoom.operador).child(chatRoom.roomId).updateChildren(valuesRoom)
+            messageEditText.setText("")
+        }
+
     }
 
-    override fun onChildAdded(dataSnapshot: DataSnapshot, s: String) {
+    override fun onChildAdded(dataSnapshot: DataSnapshot, ch: String?) {
         val chatMessage = ChatMessage()
         chatMessage.key = dataSnapshot.key
         chatMessage.type = dataSnapshot.child(ChatMessage.Column.TYPE.value).value.toString()
@@ -68,11 +72,11 @@ class ChatActivity : AppCompatActivity(), ChildEventListener {
         messageAdapter.setMessageAdapter(chatMessage)
     }
 
-    override fun onChildChanged(dataSnapshot: DataSnapshot, s: String) {}
+    override fun onChildChanged(dataSnapshot: DataSnapshot, c: String?) {}
 
     override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
 
-    override fun onChildMoved(dataSnapshot: DataSnapshot, s: String) {}
+    override fun onChildMoved(dataSnapshot: DataSnapshot, d: String?) {}
 
     override fun onCancelled(databaseError: DatabaseError) {}
 }

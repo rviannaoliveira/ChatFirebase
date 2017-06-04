@@ -12,7 +12,7 @@ import java.util.*
  * Criado por rodrigo on 28/05/17.
  */
 
-class MessageAdapter internal constructor(private val user: String) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter internal constructor(private val user: String?) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     private val list = LinkedList<ChatMessage>()
 

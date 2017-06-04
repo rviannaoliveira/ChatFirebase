@@ -28,7 +28,7 @@ class ChatMessage {
     enum class Column(val value: String) {
         CREATE_AT("CreateAt"),
         MESSAGE("Message"),
-        TYPE("Message")
+        TYPE("Type")
 
     }
 

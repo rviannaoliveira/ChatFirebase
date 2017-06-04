@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ChatFirebase.iml" filepath="$PROJECT_DIR$/ChatFirebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/VChatFirebase.iml" filepath="$PROJECT_DIR$/VChatFirebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
