@@ -5,14 +5,15 @@ Proof of concept of a Chat using Firebase Realtime
 * Rxjava -> http://reactivex.io/
 * Room -> https://developer.android.com/topic/libraries/architecture/room.html
 * Kotlin -> https://kotlinlang.org/
-* play services maps -> https://developers.google.com/maps/documentation/android-api/map?hl=pt-br
-
+* Firebase Realtime -> https://firebase.google.com/docs/database/
+* Firebase Auth -> https://firebase.google.com/docs/auth/
 
 ## **ScreenShot**
-<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/sign.png" width="360" height="600">
-<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/first.png" width="360" height="600">
-<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/second.png" width="360" height="600">
-
+<p>
+<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/sign.png" width="210" height="340" margin="10xp">
+<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/first.png" width="210" height="340" margin="10xp">
+<img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/second.png" width="210" height="340" margin="10xp">
+</p>
 ## **License**
 
 ```
