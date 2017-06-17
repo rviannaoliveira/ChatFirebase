@@ -14,7 +14,7 @@ Proof of concept of a Chat using Firebase Realtime
 <img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/first.png" width="210" height="340" margin="10xp">
 <img src="https://github.com/rviannaoliveira/ChatFirebase/blob/master/images/second.png" width="210" height="340" margin="10xp">
 </p>
-## License
+## **License**
 
 ```
 Copyright 2017 Rodrigo Vianna
