@@ -42,6 +42,7 @@ class ChatActivity : AppCompatActivity(), ChildEventListener {
         databaseReference = FirebaseDatabase.getInstance().reference
         databaseReference.child(Key.MESSAGES)
                 .child(chatRoom.roomId)
+                .orderByChild(ChatMessage.Column.CREATE_AT.value)
                 .addChildEventListener(this)
     }
 
