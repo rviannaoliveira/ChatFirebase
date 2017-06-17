@@ -1,5 +1,5 @@
 # ChatFirebase
-Projeto de estudo de um chat utilizando firebase realtime
+Proof of concept of a Chat using Firebase Realtime
 
 ## **Architeture and Libraries**
 * Rxjava -> http://reactivex.io/
